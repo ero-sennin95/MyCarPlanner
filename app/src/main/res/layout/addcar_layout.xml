@@ -1,0 +1,182 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/car_Name_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Car name" />
+
+        <EditText
+            android:id="@+id/car_Name_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter name of the car"
+            android:maxLines="1" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/picture_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Picture of the car" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/addPicture_imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Add a picure of the car"
+                android:onClick="addPicture"
+                android:src="@android:drawable/ic_input_add" />
+
+            <TextView
+                android:id="@+id/add_picture_textView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Add a picture of the car" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/registration_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="registration" />
+
+        <EditText
+            android:id="@+id/registration_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Registration(ex:AA-999-ZZ)"
+            android:inputType="textCapCharacters"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/firstRegistration_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="1st Registration" />
+
+        <EditText
+            android:id="@+id/firstRegistration_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Date(ex:31/12/2000)"
+            android:inputType="none" />
+
+        <TextView
+            android:id="@+id/techniqueControl_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Tecnhique control" />
+
+        <EditText
+            android:id="@+id/techniqueControl_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Date(ex:31/12/2000)"
+            android:inputType="none" />
+
+        <TextView
+            android:id="@+id/Brand_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Brand" />
+
+        <Spinner
+            android:id="@+id/brand_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/modele_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="modele" />
+
+        <Spinner
+            android:id="@+id/modele_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/fuel_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Fuel" />
+
+        <Spinner
+            android:id="@+id/fuel_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mileAge_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="MileAge" />
+
+        <EditText
+            android:id="@+id/mileAge_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Kilometers"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/Average_mileAge_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Average mileage" />
+
+        <EditText
+            android:id="@+id/Average_mileAge_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Average kilometers"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/add_car_db_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="add_btn"
+            android:text="Ajouter" />
+
+    </LinearLayout>
+</ScrollView>

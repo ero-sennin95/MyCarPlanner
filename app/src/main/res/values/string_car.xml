@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "brand" >
+        <item >FORD</item>
+        <item >FIAT</item>
+        <item >PEUGOT</item>
+        <item >RENAULT</item>
+        <item >VOLKSWAGEN</item>
+        <item >VOLVO</item>
+    </string-array>
+
+    <string-array name = "model_ford" >
+        <item >A</item>
+        <item >B-MAX</item>
+        <item >C-MAX</item>
+        <item >COUGAR</item>
+        <item >ECOSPORT</item>
+        <item >ESCORT</item>
+        <item >FIESTA</item>
+        <item >FOCUS</item>
+        <item >FOCUS C-MAX</item>
+        <item >KA</item>
+        <item >KUGA</item>
+        <item >MONDEO</item>
+    </string-array>
+
+    <string-array name = "model_renault" >
+        <item >CAPTUR</item>
+        <item >CLIO</item>
+        <item >ESPACE</item>
+        <item >GRAND ESPACE</item>
+        <item >GRAND KANGOO</item>
+        <item >GRAND MODUS</item>
+        <item >GRAND SCENIC</item>
+        <item >LAGUNA</item>
+        <item >MODUS</item>
+        <item >SCENIC</item>
+        <item >TWINGO</item>
+        <item >MEGANE</item>
+    </string-array>
+
+    <string-array name = "model_peugot" >
+        <item >1007</item>
+        <item >104</item>
+        <item >106</item>
+        <item >107</item>
+        <item >108</item>
+        <item >2008</item>
+        <item >206</item>
+        <item >206+</item>
+        <item >207</item>
+        <item >306</item>
+        <item >307</item>
+        <item >5008</item>
+        <item >806</item>
+    </string-array>
+
+    <string-array name = "fuel">
+        <item>Essence</item>
+        <item >Gasoil</item>
+        <item >Electric</item>
+        <item >GPL</item>
+    </string-array>
+</resources>

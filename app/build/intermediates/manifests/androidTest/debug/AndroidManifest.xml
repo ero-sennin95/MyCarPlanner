@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="planner.car.dav.com.mycarplanner.test">
+
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="21" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="planner.car.dav.com.mycarplanner"
+                     android:handleProfiling="false"
+                     android:functionalTest="false"
+                     android:label="Tests for planner.car.dav.com.mycarplanner"/>
+</manifest>
