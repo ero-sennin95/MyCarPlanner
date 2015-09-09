@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter name of the car"
-            android:maxLines="1" >
+            android:maxLines="1"
+            android:singleLine="true">
 
             <requestFocus />
         </EditText>
@@ -42,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="Add a picure of the car"
-                android:onClick="addPicture"
                 android:src="@android:drawable/ic_input_add" />
 
             <TextView
@@ -68,7 +68,7 @@
             android:ems="10"
             android:hint="Registration(ex:AA-999-ZZ)"
             android:inputType="textCapCharacters"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/firstRegistration_textView"
@@ -154,7 +154,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Kilometers"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true"/>
 
         <TextView
             android:id="@+id/Average_mileAge_textView"
@@ -169,7 +170,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Average kilometers"
-            android:inputType="number" />
+            android:inputType="number"
+            android:singleLine="true"/>
 
         <Button
             android:id="@+id/add_car_db_button"

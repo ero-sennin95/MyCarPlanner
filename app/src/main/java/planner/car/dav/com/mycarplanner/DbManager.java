@@ -127,7 +127,7 @@ public class DbManager extends SQLiteOpenHelper{
         }
         Log.i(Acceuil.APP_TAG, "debut Categorie inseré " );
         ContentValues content = new ContentValues();
-        content.put(Categorie.ID_KEY,cat.getId());
+      //  content.put(Categorie.ID_KEY,cat.getId());
         content.put(Categorie.TYPE_KEY,cat.getCategorie());
         long id = this.getWritableDatabase().insertOrThrow(TABLE_CATEGORIE, null, content);
         Log.i(Acceuil.APP_TAG, "Fin Categorie inseré " );
@@ -153,8 +153,8 @@ public class DbManager extends SQLiteOpenHelper{
         content.put(Fuel.PICTURE_BILL_PATH_KEY,fuel.getM_picture_path());
         content.put(Fuel.NOTE_PATH,fuel.getM_note());
 
-        long id = this.getWritableDatabase().insertOrThrow(TABLE_FUEL, null, content);
-        return id;
+        long idFuel = this.getWritableDatabase().insertOrThrow(TABLE_FUEL, null, content);
+        return idFuel;
 
     }
 

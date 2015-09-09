@@ -65,6 +65,8 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         final int date = rightNow.get(Calendar.DATE);
         Log.i(Acceuil.APP_TAG, "onCreate current date : " +"day : " + day + "month : "+  month +"yaer : "+year);
         Log.i(Acceuil.APP_TAG, "onCreate current date 2 : " + date);
+
+       // checkValid();
     }
 
     private void setListener() {
@@ -270,5 +272,11 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
             e.printStackTrace();
         }
         return false;
+    }
+
+    private boolean checkValid(){
+
+        registration_ET.setError("Format invalid");
+        return true;
     }
 }

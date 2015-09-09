@@ -21,32 +21,33 @@ public class Acceuil extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_acceuil);
        //Si la base de données n'existe pas, on la creer et on insere les categories
+
        if (!checkDataBase()){
             Log.i(APP_TAG, "Acceuil la bdd n'existe pas" );
 
-          Categorie c1 =  new Categorie(-1, "Administratif");
-           Log.i(APP_TAG, "categorie c1 : " + c1.toString());
-           final long l = new DbManager(this).insertCategorie(c1);         
+         // Categorie c1 =  new Categorie(-1, "Administratif");
+           //Log.i(APP_TAG, "categorie c1 : " + c1.toString());
+           //final long l = new DbManager(this).insertCategorie(c1);
 
-         /*   new DbManager(this).insertCategorie(new Categorie(-1, "Administratif"));
+           new DbManager(this).insertCategorie(new Categorie(-1, "Administratif"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Carburant"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Divers"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Equipement"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Parking"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Péage"));
            new DbManager(this).insertCategorie(new Categorie(-1,"Réparation"));
-           new DbManager(this).insertCategorie(new Categorie(-1,"Service"));*/
+           new DbManager(this).insertCategorie(new Categorie(-1,"Service"));
            Log.i(APP_TAG, "Fin ajout categorie");
 
             //long id = new DbManager(this).insertCar();
-        }
+        }else Log.i(APP_TAG, "Acceuil la bdd existe " );
 
-
+        Log.i(APP_TAG, "Acceuil On continu" );
     }
 
     private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;
-        File dbPath = this.getDatabasePath("baseCarPlanner");;
+        File dbPath = this.getDatabasePath("baseCarPlanner");
         try {
              checkDB = SQLiteDatabase.openDatabase(dbPath.getPath(), null, SQLiteDatabase.OPEN_READONLY);
             Log.i(APP_TAG, "Acceuil try db" );
