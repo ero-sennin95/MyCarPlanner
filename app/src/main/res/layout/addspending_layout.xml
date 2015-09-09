@@ -47,7 +47,8 @@
             android:ems="10"
             android:hint="Price"
             android:maxLines="1"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:inputType="numberDecimal" />
 
         <TextView
             android:id="@+id/date_spend_textView"
@@ -61,9 +62,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Date"
             android:maxLines="1"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Date(ex:31/12/2000)"
+            android:inputType="none" />
 
         <TextView
             android:id="@+id/mileage_spend_textView"
@@ -79,7 +83,8 @@
             android:ems="10"
             android:hint="MileAge"
             android:maxLines="1"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:inputType="number|numberDecimal" />
 
         <TextView
             android:id="@+id/price_liter_spend_textView"
@@ -95,7 +100,8 @@
             android:ems="10"
             android:hint="Price per liter"
             android:maxLines="1"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:inputType="numberDecimal" />
 
         <TextView
             android:id="@+id/station_spend_textview"
@@ -133,15 +139,26 @@
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
             android:text="Bill" />
-        <EditText
-            android:id="@+id/bill_spend_editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Bill"
-            android:maxLines="1"
-            android:singleLine="true"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/addPicture_invoice_imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Add a picure of the invoice"
+                android:src="@android:drawable/ic_input_add" />
+
+            <TextView
+                android:id="@+id/add_picture_invoice_textView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Add a picture of the invoice" />
+
+        </LinearLayout>
         <TextView
             android:id="@+id/note_spend_textView"
             android:layout_width="fill_parent"

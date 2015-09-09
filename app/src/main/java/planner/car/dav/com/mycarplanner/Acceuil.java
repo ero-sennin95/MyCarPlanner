@@ -82,6 +82,8 @@ public class Acceuil extends Activity {
                 new DbManager(this).deletteAllDBentry();
                 break;
             case R.id.spending_button:
+                Intent spendIntent = new Intent(Acceuil.this,Spending.class);
+                startActivity(spendIntent);
                 //public Fuel(long id,String carId,String price,String date,String mileage,String price_per_liter,String fuel_station,String fuel,String city,String picture_path,String note)
                 //new DbManager(this).insertFuel(new Fuel(-1,1,"40","01/08/15","750","3.15","BP","diesel","Magny","ToDo","Ras"));
                 break;

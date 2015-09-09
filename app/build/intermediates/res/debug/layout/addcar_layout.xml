@@ -43,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="Add a picure of the car"
-                android:onClick="addPicture"
                 android:src="@android:drawable/ic_input_add" />
 
             <TextView

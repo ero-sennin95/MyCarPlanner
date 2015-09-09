@@ -1,18 +1,48 @@
 package planner.car.dav.com.mycarplanner;
 
+import android.app.DatePickerDialog;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
-public class Spending extends ActionBarActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
+public class Spending extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
+public static final String DATE_ID = "spendFragId";
+    EditText spendDateET =null;
+    DialogFragment newFrag= null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addspending_layout);
+        initFindViewById();
+        setListener();
     }
 
+    private void initFindViewById(){
+        spendDateET = (EditText) this.findViewById(R.id.date_spend_editText);
+    }
+
+    private void setListener(){
+        spendDateET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(Acceuil.APP_TAG, "Spend ET clicked!");
+                newFrag = new DatePickerFragment();
+                newFrag.show(getSupportFragmentManager(),DATE_ID);
+
+            }
+        });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -33,5 +63,24 @@ public class Spending extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+        Log.i(Acceuil.APP_TAG, "onDateSet Spend method");
+        Log.i(Acceuil.APP_TAG,"view ID" + view.getId());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar c = Calendar.getInstance();
+        c.set(year, monthOfYear, dayOfMonth);
+        String date = sdf.format(c.getTime());
+        Log.i(Acceuil.APP_TAG, "Spend method Date: " +date);
+
+
+        Log.i(Acceuil.APP_TAG, "Spend method Tag: "+ view.getTag());
+        if (view.getTag().equals(DATE_ID)){
+            Log.i(Acceuil.APP_TAG,"DateReisterId selected");
+            spendDateET.setText(date);
+        }
     }
 }

@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name=".Spending"
-            android:label="@string/title_activity_spending" >
+            android:label="@string/title_activity_spending"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 
