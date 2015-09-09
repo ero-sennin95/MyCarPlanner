@@ -17,9 +17,11 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Spending extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
-public static final String DATE_ID = "spendFragId";
+public static final String DATE_TAG = "spendFragId";
     EditText spendDateET =null;
     DialogFragment newFrag= null;
+    EditText Car_spend_ET = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public static final String DATE_ID = "spendFragId";
 
     private void initFindViewById(){
         spendDateET = (EditText) this.findViewById(R.id.date_spend_editText);
+        Car_spend_ET= (EditText) this.findViewById(R.id.Car_spend_editText);
     }
 
     private void setListener(){
@@ -38,10 +41,20 @@ public static final String DATE_ID = "spendFragId";
             public void onClick(View view) {
                 Log.i(Acceuil.APP_TAG, "Spend ET clicked!");
                 newFrag = new DatePickerFragment();
-                newFrag.show(getSupportFragmentManager(),DATE_ID);
+                newFrag.show(getSupportFragmentManager(),DATE_TAG);
 
             }
         });
+        Car_spend_ET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(Acceuil.APP_TAG, "car spend ET clicked!");
+                CarDialogFragment listCarFrag = new CarDialogFragment();
+                listCarFrag.show(getSupportFragmentManager(),"TAG");
+            }
+        });
+
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +91,7 @@ public static final String DATE_ID = "spendFragId";
 
 
         Log.i(Acceuil.APP_TAG, "Spend method Tag: "+ view.getTag());
-        if (view.getTag().equals(DATE_ID)){
+        if (view.getTag().equals(DATE_TAG)){
             Log.i(Acceuil.APP_TAG,"DateReisterId selected");
             spendDateET.setText(date);
         }

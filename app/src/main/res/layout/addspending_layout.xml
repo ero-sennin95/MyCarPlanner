@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true"
+    android:focusable="false">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -30,7 +31,9 @@
             android:ems="10"
             android:hint="Enter name of the car"
             android:maxLines="1"
-            android:singleLine="true"> <requestFocus />
+            android:singleLine="true"
+            android:inputType="none"
+            android:focusable="false"> <requestFocus />
         </EditText>
 
         <TextView

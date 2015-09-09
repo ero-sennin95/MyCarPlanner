@@ -175,6 +175,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         Calendar c = Calendar.getInstance();
         c.set(year, monthOfYear, dayOfMonth);
         String date = sdf.format(c.getTime());
+
         //Log.i(Acceuil.APP_TAG, "AddCar method Date: " +date);
 
 
@@ -252,6 +253,8 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
 
         n = generator.nextInt(n);
         String fileName = "thumbnail-" + n + ".jpg";
+
+
         File storageDir = new File( this. getDir("Thumbnails", Context.MODE_PRIVATE) ,fileName);
         FileOutputStream storageStreamOut = null;
         //   Log.i(Acceuil.APP_TAG,"carName : storage Dir : " +storageDir.toString() );
