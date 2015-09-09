@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="planner.car.dav.com.mycarplanner" >
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,11 +23,15 @@
         <activity
             android:name=".AddCar"
             android:label="@string/title_activity_car"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name=".AndroidDatabaseManager"
             android:label="@string/title_activity_car" >
+        </activity>
+        <activity
+            android:name=".Spending"
+            android:label="@string/title_activity_spending" >
         </activity>
     </application>
 

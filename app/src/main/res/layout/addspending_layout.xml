@@ -1,0 +1,168 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/Spending_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Add spending" />
+
+        <TextView
+            android:id="@+id/Car_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Car" />
+
+
+        <EditText
+            android:id="@+id/Car_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter name of the car"
+            android:maxLines="1"
+            android:singleLine="true"> <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/price_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Price" />
+
+        <EditText
+            android:id="@+id/price_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Price"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/date_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Date" />
+
+        <EditText
+            android:id="@+id/date_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Date"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/mileage_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="MileAge" />
+
+        <EditText
+            android:id="@+id/mileage_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="MileAge"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/price_liter_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Price per liter" />
+
+        <EditText
+            android:id="@+id/price_liter_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Price per liter"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/station_spend_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Station" />
+
+        <EditText
+            android:id="@+id/station_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Station"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/city_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="City" />
+        <EditText
+            android:id="@+id/city_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="City"
+            android:maxLines="1"
+            android:singleLine="true"/>
+        <TextView
+            android:id="@+id/bill_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Bill" />
+        <EditText
+            android:id="@+id/bill_spend_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Bill"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/note_spend_textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF33B5E5"
+            android:text="Note" />
+
+        <EditText
+        android:id="@+id/note_spend_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Note"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
