@@ -13,10 +13,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Spending extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
+public class Spending extends FragmentActivity implements DatePickerDialog.OnDateSetListener,CarDialogFragment.CarDialogListener {
 public static final String DATE_TAG = "spendFragId";
     EditText spendDateET =null;
     DialogFragment newFrag= null;
@@ -49,6 +50,8 @@ public static final String DATE_TAG = "spendFragId";
             @Override
             public void onClick(View view) {
                 Log.i(Acceuil.APP_TAG, "car spend ET clicked!");
+               // final ArrayList<String> reqResult = new DbManager(view.getContext()).listCarName();
+              //  Log.i(Acceuil.APP_TAG, "reqResult : " + reqResult.toString());
                 CarDialogFragment listCarFrag = new CarDialogFragment();
                 listCarFrag.show(getSupportFragmentManager(),"TAG");
             }
@@ -95,5 +98,11 @@ public static final String DATE_TAG = "spendFragId";
             Log.i(Acceuil.APP_TAG,"DateReisterId selected");
             spendDateET.setText(date);
         }
+    }
+
+    @Override
+    public void onChoiceSet(String i) {
+        Log.i(Acceuil.APP_TAG,"onChoiceSet : " + i);
+        Car_spend_ET.setText(i);
     }
 }

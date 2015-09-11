@@ -151,7 +151,7 @@ public class DbManager extends SQLiteOpenHelper{
 
         content.put(Fuel.CITY_KEY,fuel.getM_city());
         content.put(Fuel.PICTURE_BILL_PATH_KEY,fuel.getM_picture_path());
-        content.put(Fuel.NOTE_PATH,fuel.getM_note());
+        content.put(Fuel.NOTE_PATH, fuel.getM_note());
 
         long idFuel = this.getWritableDatabase().insertOrThrow(TABLE_FUEL, null, content);
         return idFuel;
@@ -209,11 +209,49 @@ public class DbManager extends SQLiteOpenHelper{
         return carsResult;
     }
 
+    public String[] listCarName() {
+        Log.i(Acceuil.APP_TAG, "listCarName() ");
+        //ArrayList<String> stringResult = new ArrayList<String>();
+
+
+        final SQLiteDatabase dbb = this.getReadableDatabase();
+        dbb.beginTransaction();
+        String[] listCar;
+        try {
+
+            final String requete = "SELECT " + Vehicule.NAME_KEY + " FROM " + TABLE_CAR;
+            Cursor cursor = getReadableDatabase().rawQuery(requete, new String[0]);
+            int resultsize = cursor.getCount();
+            listCar = new String[resultsize];
+            int i = 0;
+            //CharSequence[] result = new  CharSequence[resultsize];
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                final String carname = cursor.getString(0);
+                Log.i(Acceuil.APP_TAG, "carname : " + carname +" i : " + i);
+               // stringResult.add(carname);
+                listCar[i] = carname;
+                i++;
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+            dbb.setTransactionSuccessful();
+
+        } finally {
+            dbb.endTransaction();
+        }
+
+        return listCar;
+        //cursor.moveToFirst();
+
+
+    }
     public ArrayList<Cursor> getData(String Query){
 
         //get writable database
         SQLiteDatabase sqlDB = this.getWritableDatabase();
-        String[] columns = new String[] { "mesage" };
+        String[] columns = new String[] { "message" };
         //an array list of cursor to save two cursors one has results from the query
         //other cursor stores error message if any errors are triggered
         ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
