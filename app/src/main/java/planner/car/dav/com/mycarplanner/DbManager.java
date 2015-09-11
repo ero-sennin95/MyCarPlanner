@@ -15,7 +15,7 @@ import android.util.Log;
 public class DbManager extends SQLiteOpenHelper{
 
     public static final String DBNAME = "baseCarPlanner";
-    public static final int DBVERSION = 2;
+    public static final int DBVERSION = 3;
     public static final String TABLE_CAR = "car";
     public static final String TABLE_FUEL = "fuel";
     public static final String TABLE_CATEGORIE = "categorie";
@@ -35,7 +35,7 @@ public class DbManager extends SQLiteOpenHelper{
         Log.i(Acceuil.APP_TAG,"onCreate() : implantation du schema de la base");
 
         String strCar = "CREATE TABLE "+ TABLE_CAR + " (" +Vehicule.ID_KEY +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +Vehicule.NAME_KEY +" TEXT,"
+                +Vehicule.NAME_KEY +" TEXT NOT NULL,"
                 +Vehicule.REGISTRATION_KEY +" TEXT,"
                 +Vehicule.FIRST_REGISTRATION_KEY + " TEXT,"
                 +Vehicule.BRAND_KEY + " TEXT,"
@@ -76,6 +76,7 @@ public class DbManager extends SQLiteOpenHelper{
                 +"database");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CAR);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FUEL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORIE);
 
         this.onCreate(db);
 

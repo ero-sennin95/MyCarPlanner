@@ -46,11 +46,16 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     Spinner fuel_spinner = null;
     HashMap<Integer,Integer> mapper = null;
     EditText registration_ET=null;
+    EditText firstRegistration_ET=null;
     EditText control_ET =null;
+    EditText carNameET = null;
     DialogFragment newFrag= null;
     Button addCar_btn =null;
     ImageButton addPicture_btn = null;
     TextView infoCarPicture_btn = null;
+    EditText averageMileAge_ET = null;
+    EditText mileAge_ET = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +68,14 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         final int year = rightNow.get(Calendar.YEAR);
         final int day = rightNow.get(Calendar.DAY_OF_MONTH);
         final int date = rightNow.get(Calendar.DATE);
-        Log.i(Acceuil.APP_TAG, "onCreate current date : " +"day : " + day + "month : "+  month +"yaer : "+year);
+        Log.i(Acceuil.APP_TAG, "onCreate current date : " + "day : " + day + "month : " + month + "yaer : " + year);
         Log.i(Acceuil.APP_TAG, "onCreate current date 2 : " + date);
 
        // checkValid();
     }
 
     private void setListener() {
-        registration_ET.setOnClickListener(new OnClickListener() {
+        firstRegistration_ET.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -112,14 +117,20 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     }
 
     private void initFindViewById() {
+        carNameET = (EditText)this.findViewById(R.id.car_Name_editText);
+        registration_ET = (EditText) this.findViewById(R.id.registration_editText);
+        firstRegistration_ET = (EditText) this.findViewById(R.id.firstRegistration_editText);
+        control_ET = (EditText) this.findViewById(R.id.techniqueControl_editText);
         brand_spinner = (Spinner) this.findViewById(R.id.brand_spinner);
         model_spinner = (Spinner) this.findViewById(R.id.modele_spinner);
         fuel_spinner = (Spinner) this.findViewById(R.id.fuel_spinner);
-        registration_ET = (EditText) this.findViewById(R.id.firstRegistration_editText);
-        control_ET = (EditText) this.findViewById(R.id.techniqueControl_editText);
+        averageMileAge_ET =(EditText)this.findViewById(R.id.Average_mileAge_editText);
+        mileAge_ET = (EditText)this.findViewById(R.id.mileAge_editText);
         addCar_btn = (Button) this.findViewById(R.id.add_car_db_button);
         addPicture_btn = (ImageButton) this.findViewById(R.id.addPicture_imageButton);
         infoCarPicture_btn =  (TextView) this.findViewById(R.id.add_picture_textView);
+
+
     }
 
     public void updateModel(int id){
@@ -139,7 +150,6 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         Log.i(Acceuil.APP_TAG, "Item at pos : " +parent.getItemAtPosition(pos));
         Log.i(Acceuil.APP_TAG,"Id : " + id);
         Log.i(Acceuil.APP_TAG, "P : " + pos);
-        Log.i(Acceuil.APP_TAG, "Parent : " + parent.toString());
         switch(pos){
             case 0:
                 updateModel(R.array.model_ford);
@@ -182,7 +192,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         Log.i(Acceuil.APP_TAG, "AddCar method Tag: "+ view.getTag());
         if (view.getTag().equals("DateRegisterId")){
             Log.i(Acceuil.APP_TAG,"DateReisterId selected");
-            registration_ET.setText(date);
+            firstRegistration_ET.setText(date);
         }else if (view.getTag().equals("ControlId")){
             Log.i(Acceuil.APP_TAG,"ControlId selected");
             control_ET.setText(date);
@@ -192,18 +202,19 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     }
 
     public void add_btn(View v){
-        Log.i(Acceuil.APP_TAG,"add car clicked");
-        String carName = ((EditText)this.findViewById(R.id.car_Name_editText)).getText().toString();
-       // String picturePath = "A implenter";
-        String registration = ((EditText)this.findViewById(R.id.registration_editText)).getText().toString();
-        String firstRegistration = ((EditText)this.findViewById(R.id.firstRegistration_editText)).getText().toString();
-        String brand = ((Spinner)this.findViewById(R.id.brand_spinner)).getSelectedItem().toString();
-        String model = ((Spinner)this.findViewById(R.id.modele_spinner)).getSelectedItem().toString();
-        String fuel = ((Spinner)this.findViewById(R.id.fuel_spinner)).getSelectedItem().toString();
-        String mileAge = ((EditText)this.findViewById(R.id.mileAge_editText)).getText().toString();
-        String averageMile = ((EditText)this.findViewById(R.id.Average_mileAge_editText)).getText().toString();
-        String control = ((EditText)this.findViewById(R.id.techniqueControl_editText)).getText().toString();
-        Log.i(Acceuil.APP_TAG,"carName : " + carName + firstRegistration);
+        Log.i(Acceuil.APP_TAG, "add car clicked");
+        String carName = carNameET.getText().toString();
+        // String picturePath = "A implenter";
+        String registration = registration_ET.getText().toString();
+        String firstRegistration = firstRegistration_ET.getText().toString();
+        String brand = brand_spinner.getSelectedItem().toString();
+        String model = model_spinner.getSelectedItem().toString();
+        String fuel = fuel_spinner.getSelectedItem().toString();
+        String mileAge = mileAge_ET.getText().toString();
+        String averageMile = averageMileAge_ET.getText().toString();
+        String control = control_ET.getText().toString();
+
+       // Log.i(Acceuil.APP_TAG,"carName : " + carName + firstRegistration);
         //Log.i(Acceuil.APP_TAG,"add btn brand : " + brand);
         Intent i = new Intent();
         i.putExtra(Vehicule.NAME_KEY, carName);
@@ -279,7 +290,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
 
     private boolean checkValid(){
 
-        registration_ET.setError("Format invalid");
+        //registration_ET.setError("Format invalid");
         return true;
     }
 }
