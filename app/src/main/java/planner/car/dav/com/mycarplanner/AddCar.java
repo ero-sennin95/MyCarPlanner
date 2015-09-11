@@ -169,7 +169,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
-        Log.i(Acceuil.APP_TAG, "onNothingSelected");
+       // Log.i(Acceuil.APP_TAG, "onNothingSelected");
     }
 
 
