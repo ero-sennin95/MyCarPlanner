@@ -302,10 +302,12 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     private boolean checkValid(){
         boolean ret = true;
 
-        if (!Validation.hasText(carNameET) || !Validation.hasText(firstRegistration_ET) ||!Validation.hasText(control_ET)  ) ret = false;
+        if (!Validation.hasText(carNameET)) ret = false;
+        if( !Validation.hasText(firstRegistration_ET))ret =false;
         if(!Validation.hasText(averageMileAge_ET))ret =false;
+        if(!Validation.hasText(control_ET))ret =false;
         if(!Validation.hasText(mileAge_ET))ret =false;
-       // if(!Validation.isRegistrationNew(registration_ET, true)) ret = false;
+
         if(!Validation.isRegistrationOld(registration_ET,true) && !Validation.isRegistrationNew(registration_ET, true)) {
             ret = false;
         }

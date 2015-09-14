@@ -13,7 +13,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Car name" />
+            android:text="Car name*" />
 
         <EditText
             android:id="@+id/car_Name_editText"
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Registration(ex:AA-999-ZZ)"
+            android:hint="Registration(ex:AA999ZZ ou 999AAA99)"
             android:inputType="textCapCharacters"
             android:singleLine="true" />
 
@@ -75,7 +75,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="1st Registration" />
+            android:text="1st Registration*" />
 
         <EditText
             android:id="@+id/firstRegistration_editText"
@@ -92,7 +92,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Tecnhique control" />
+            android:text="Tecnhique control*" />
 
         <EditText
             android:id="@+id/techniqueControl_editText"
@@ -110,7 +110,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Brand" />
+            android:text="Brand*" />
 
         <Spinner
             android:id="@+id/brand_spinner"
@@ -122,7 +122,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="modele" />
+            android:text="modele*" />
 
         <Spinner
             android:id="@+id/modele_spinner"
@@ -134,7 +134,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Fuel" />
+            android:text="Fuel*" />
 
         <Spinner
             android:id="@+id/fuel_spinner"
@@ -146,7 +146,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="MileAge" />
+            android:text="MileAge*" />
 
         <EditText
             android:id="@+id/mileAge_editText"
@@ -162,7 +162,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Average mileage" />
+            android:text="Average mileage*" />
 
         <EditText
             android:id="@+id/Average_mileAge_editText"
