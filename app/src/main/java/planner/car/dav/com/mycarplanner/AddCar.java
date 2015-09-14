@@ -35,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddCar extends FragmentActivity implements OnItemSelectedListener,OnDateSetListener{
 
@@ -148,7 +149,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
 
         Log.i(Acceuil.APP_TAG, "onItemSelected");
         Log.i(Acceuil.APP_TAG, "Item at pos : " +parent.getItemAtPosition(pos));
-        Log.i(Acceuil.APP_TAG,"Id : " + id);
+        Log.i(Acceuil.APP_TAG, "Id : " + id);
         Log.i(Acceuil.APP_TAG, "P : " + pos);
         switch(pos){
             case 0:
@@ -202,8 +203,14 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     }
 
     public void add_btn(View v){
+
         Log.i(Acceuil.APP_TAG, "add car clicked");
-        String carName = carNameET.getText().toString();
+        if (checkValid()){
+            submitForm();
+        }else{
+            Toast.makeText(AddCar.this,"Erreur dans le formulaire",Toast.LENGTH_LONG).show();
+        }
+       /* String carName = carNameET.getText().toString();
         // String picturePath = "A implenter";
         String registration = registration_ET.getText().toString();
         String firstRegistration = firstRegistration_ET.getText().toString();
@@ -234,8 +241,12 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
 
         this.setResult(RESULT_OK,i);
         Log.i(Acceuil.APP_TAG,"add btn finish");
-        this.finish();
+        this.finish();*/
 
+    }
+
+    private void submitForm() {
+        Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -289,8 +300,15 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
     }
 
     private boolean checkValid(){
+        boolean ret = true;
 
-        //registration_ET.setError("Format invalid");
-        return true;
+        if (!Validation.hasText(carNameET) || !Validation.hasText(firstRegistration_ET) ||!Validation.hasText(control_ET)  ) ret = false;
+        if(!Validation.hasText(averageMileAge_ET))ret =false;
+        if(!Validation.hasText(mileAge_ET))ret =false;
+       // if(!Validation.isRegistrationNew(registration_ET, true)) ret = false;
+        if(!Validation.isRegistrationOld(registration_ET,true) && !Validation.isRegistrationNew(registration_ET, true)) {
+            ret = false;
+        }
+        return ret;
     }
 }
