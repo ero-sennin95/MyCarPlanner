@@ -338,6 +338,7 @@ int drawable abc_textfield_default_mtrl_alpha 0x7f02002f
 int drawable abc_textfield_search_activated_mtrl_alpha 0x7f020030
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f020031
 int drawable abc_textfield_search_material 0x7f020032
+int id Add_Spend_Btn 0x7f0d0069
 int id Average_mileAge_editText 0x7f0d0053
 int id Average_mileAge_textView 0x7f0d0052
 int id Brand_textView 0x7f0d004a
@@ -357,11 +358,11 @@ int id action_menu_presenter 0x7f0d0003
 int id action_mode_bar 0x7f0d002e
 int id action_mode_bar_stub 0x7f0d002d
 int id action_mode_close_button 0x7f0d0020
-int id action_settings 0x7f0d0074
+int id action_settings 0x7f0d0075
 int id activity_chooser_view_content 0x7f0d0021
 int id addPicture_imageButton 0x7f0d0042
 int id addPicture_invoice_imageButton 0x7f0d0065
-int id add_button 0x7f0d006a
+int id add_button 0x7f0d006b
 int id add_car_db_button 0x7f0d0054
 int id add_picture_invoice_textView 0x7f0d0066
 int id add_picture_textView 0x7f0d0043
@@ -371,8 +372,8 @@ int id bill_spend_textView 0x7f0d0064
 int id brand_spinner 0x7f0d004b
 int id car_Name_editText 0x7f0d0040
 int id car_Name_textView 0x7f0d003f
-int id car_button 0x7f0d0070
-int id car_listView 0x7f0d0069
+int id car_button 0x7f0d0071
+int id car_listView 0x7f0d006a
 int id checkbox 0x7f0d0029
 int id city_spend_editText 0x7f0d0063
 int id city_spend_textView 0x7f0d0062
@@ -381,8 +382,8 @@ int id date_spend_editText 0x7f0d005b
 int id date_spend_textView 0x7f0d005a
 int id decor_content_parent 0x7f0d002f
 int id default_activity_button 0x7f0d0024
-int id delette_button 0x7f0d0073
-int id depenseTV 0x7f0d006b
+int id delette_button 0x7f0d0074
+int id depenseTV 0x7f0d006c
 int id dialog 0x7f0d001b
 int id disableHome 0x7f0d000c
 int id dropdown 0x7f0d001c
@@ -390,10 +391,10 @@ int id edit_query 0x7f0d0033
 int id end 0x7f0d0014
 int id expand_activities_button 0x7f0d0022
 int id expanded_menu 0x7f0d0028
-int id filterCatSpinner 0x7f0d006d
+int id filterCatSpinner 0x7f0d006e
 int id firstRegistration_editText 0x7f0d0047
 int id firstRegistration_textView 0x7f0d0046
-int id fuel_button 0x7f0d0072
+int id fuel_button 0x7f0d0073
 int id fuel_spinner 0x7f0d004f
 int id fuel_textView 0x7f0d004e
 int id home 0x7f0d0004
@@ -401,7 +402,7 @@ int id homeAsUp 0x7f0d000d
 int id icon 0x7f0d0026
 int id ifRoom 0x7f0d0018
 int id image 0x7f0d0023
-int id linearLayout 0x7f0d006c
+int id linearLayout 0x7f0d006d
 int id listMode 0x7f0d0009
 int id list_item 0x7f0d0025
 int id middle 0x7f0d0015
@@ -424,7 +425,7 @@ int id price_spend_textView 0x7f0d0058
 int id progress_circular 0x7f0d0005
 int id progress_horizontal 0x7f0d0006
 int id radio 0x7f0d002b
-int id register_button 0x7f0d006f
+int id register_button 0x7f0d0070
 int id registration_editText 0x7f0d0045
 int id registration_textView 0x7f0d0044
 int id search_badge 0x7f0d0035
@@ -441,7 +442,7 @@ int id shortcut 0x7f0d002a
 int id showCustom 0x7f0d000f
 int id showHome 0x7f0d0010
 int id showTitle 0x7f0d0011
-int id spending_button 0x7f0d0071
+int id spending_button 0x7f0d0072
 int id split_action_bar 0x7f0d0007
 int id station_spend_editText 0x7f0d0061
 int id station_spend_textview 0x7f0d0060
@@ -450,7 +451,7 @@ int id tabMode 0x7f0d000b
 int id techniqueControl_editText 0x7f0d0049
 int id techniqueControl_textView 0x7f0d0048
 int id title 0x7f0d0027
-int id totalTV 0x7f0d006e
+int id totalTV 0x7f0d006f
 int id up 0x7f0d0008
 int id useLogo 0x7f0d0012
 int id withText 0x7f0d001a

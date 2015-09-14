@@ -210,7 +210,13 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         }else{
             Toast.makeText(AddCar.this,"Erreur dans le formulaire",Toast.LENGTH_LONG).show();
         }
-       /* String carName = carNameET.getText().toString();
+
+
+    }
+
+    private void submitForm() {
+        Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
+        String carName = carNameET.getText().toString();
         // String picturePath = "A implenter";
         String registration = registration_ET.getText().toString();
         String firstRegistration = firstRegistration_ET.getText().toString();
@@ -241,12 +247,7 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
 
         this.setResult(RESULT_OK,i);
         Log.i(Acceuil.APP_TAG,"add btn finish");
-        this.finish();*/
-
-    }
-
-    private void submitForm() {
-        Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
+        this.finish();
     }
 
     @Override
@@ -271,12 +272,13 @@ public class AddCar extends FragmentActivity implements OnItemSelectedListener,O
         Random generator = new Random();
         int n = 10000;
         Calendar rightNow = Calendar.getInstance();
-        final int i = rightNow.get(Calendar.MONTH);
+        final int m = (rightNow.get(Calendar.MONTH) + 1);
+        final int d = rightNow.get(Calendar.DAY_OF_MONTH);
+        final int y = rightNow.get(Calendar.YEAR);
 
         n = generator.nextInt(n);
-        String fileName = "thumbnail-" + n + ".jpg";
-
-
+        String fileName = String.format("thumbnail-%d%d%d-%d.jpg", d, m, y,n);
+        Log.i(Acceuil.APP_TAG,"carName : fileName : " +fileName);
         File storageDir = new File( this. getDir("Thumbnails", Context.MODE_PRIVATE) ,fileName);
         FileOutputStream storageStreamOut = null;
         //   Log.i(Acceuil.APP_TAG,"carName : storage Dir : " +storageDir.toString() );

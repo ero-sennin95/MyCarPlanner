@@ -21,7 +21,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Car" />
+            android:text="Car*" />
 
 
         <EditText
@@ -41,7 +41,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Price" />
+            android:text="Price*" />
 
         <EditText
             android:id="@+id/price_spend_editText"
@@ -58,7 +58,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FF33B5E5"
-            android:text="Date" />
+            android:text="Date*" />
 
         <EditText
             android:id="@+id/date_spend_editText"
@@ -178,9 +178,11 @@
         android:maxLines="1"
         android:singleLine="true"/>
 
-
-
-
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:id="@+id/Add_Spend_Btn" />
 
 
     </LinearLayout>

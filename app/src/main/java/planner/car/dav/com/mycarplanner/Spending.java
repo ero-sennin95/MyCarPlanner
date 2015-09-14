@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public static final String DATE_TAG = "spendFragId";
     EditText spendDateET =null;
     DialogFragment newFrag= null;
     EditText Car_spend_ET = null;
+    Button Add_Spend_bt = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public static final String DATE_TAG = "spendFragId";
     private void initFindViewById(){
         spendDateET = (EditText) this.findViewById(R.id.date_spend_editText);
         Car_spend_ET= (EditText) this.findViewById(R.id.Car_spend_editText);
+        Add_Spend_bt =(Button) this.findViewById(R.id.Add_Spend_Btn);
     }
 
     private void setListener(){
@@ -56,8 +60,32 @@ public static final String DATE_TAG = "spendFragId";
                 listCarFrag.show(getSupportFragmentManager(),"TAG");
             }
         });
+        Add_Spend_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(Acceuil.APP_TAG, "car spend button clicked!");
 
+                if (checkValid()){
+                    submitForm();
+                }else{
+                    Toast.makeText(Spending.this, "Erreur dans le formulaire", Toast.LENGTH_LONG).show();
+                }
 
+            }
+        });
+
+    }
+
+    private boolean checkValid() {
+        boolean ret = true;
+
+        if (!Validation.hasText(Car_spend_ET)) ret = false;
+
+        return ret;
+
+    }
+    private void submitForm(){
+        Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
