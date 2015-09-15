@@ -272,8 +272,8 @@ public class DbManager extends SQLiteOpenHelper{
                 final long id = cursor.getLong(1);
                 Log.i(Acceuil.APP_TAG, "carname : " + cc );
                 Log.i(Acceuil.APP_TAG, "id : " + id );
-
-                // stringResult.add(carname);
+//dd
+              // stringResult.add(carname);
                // listCar[i] = carname;
               //  i++;
                 cursor.moveToNext();
