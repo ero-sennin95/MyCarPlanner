@@ -1,6 +1,7 @@
 package planner.car.dav.com.mycarplanner;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -48,10 +49,10 @@ public class DbManager extends SQLiteOpenHelper{
 
         String strfuel = "CREATE TABLE "+ TABLE_FUEL + " (" +Fuel.ID_KEY +" INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +Fuel.ID_CAR_KEY +" INTEGER,"
-                +Fuel.PRICE_KEY +" TEXT,"
+                +Fuel.PRICE_KEY +" REAL,"
                 +Fuel.DATE_KEY + " TEXT,"
-                +Fuel.MILEAGE_KEY + " TEXT,"
-                +Fuel.PICEPERLITER_KEY + " TEXT,"
+                +Fuel.MILEAGE_KEY + " INTEGER,"
+                +Fuel.PICEPERLITER_KEY + " REAL,"
                 +Fuel.FUELSTATION_KEY +" TEXT,"
                 +Fuel.CITY_KEY +" TEXT,"
                 +Fuel.PICTURE_BILL_PATH_KEY + " TEXT,"
@@ -244,6 +245,48 @@ public class DbManager extends SQLiteOpenHelper{
         }
 
         return listCar;
+        //cursor.moveToFirst();
+
+
+    }
+    public Hashtable listCarNameId() {
+        Log.i(Acceuil.APP_TAG, "listCarName() ");
+        //ArrayList<String> stringResult = new ArrayList<String>();
+        Hashtable ht = new Hashtable();
+
+
+        final SQLiteDatabase dbb = this.getReadableDatabase();
+        dbb.beginTransaction();
+       // String[] listCar;
+        try {
+
+            final String requete = "SELECT " + Vehicule.NAME_KEY + "," + Vehicule.ID_KEY+ " FROM " + TABLE_CAR;
+            Cursor cursor = getReadableDatabase().rawQuery(requete, new String[0]);
+            int resultsize = cursor.getCount();
+           // listCar = new String[resultsize];
+            int i = 0;
+            //CharSequence[] result = new  CharSequence[resultsize];
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                final String cc = cursor.getString(0);
+                final long id = cursor.getLong(1);
+                Log.i(Acceuil.APP_TAG, "carname : " + cc );
+                Log.i(Acceuil.APP_TAG, "id : " + id );
+
+                // stringResult.add(carname);
+               // listCar[i] = carname;
+              //  i++;
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+            dbb.setTransactionSuccessful();
+
+        } finally {
+            dbb.endTransaction();
+        }
+
+        return null;
         //cursor.moveToFirst();
 
 

@@ -3,7 +3,6 @@ package planner.car.dav.com.mycarplanner;
 import android.app.DatePickerDialog;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,15 +14,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Spending extends FragmentActivity implements DatePickerDialog.OnDateSetListener,CarDialogFragment.CarDialogListener {
-public static final String DATE_TAG = "spendFragId";
+import static planner.car.dav.com.mycarplanner.R.id.date_spend_editText;
+
+public class SpendingFuel extends FragmentActivity implements DatePickerDialog.OnDateSetListener,CarDialogFragment.CarDialogListener {
+    public static final String DATE_TAG = "spendFragId";
     EditText spendDateET =null;
     DialogFragment newFrag= null;
     EditText Car_spend_ET = null;
+    EditText Price_spend_ET = null;
+    EditText Price_per_liter_ET = null;
+    EditText Date_spend_ET = null;
+    EditText MileAge_spend_ET = null;
+    EditText Station_spend_ET = null;
+    EditText City_spend_ET = null;
+    EditText Note_spend_ET = null;
     Button Add_Spend_bt = null;
 
     @Override
@@ -32,12 +39,19 @@ public static final String DATE_TAG = "spendFragId";
         setContentView(R.layout.addspending_layout);
         initFindViewById();
         setListener();
+        new DbManager(this).listCarNameId();
     }
 
     private void initFindViewById(){
-        spendDateET = (EditText) this.findViewById(R.id.date_spend_editText);
+        spendDateET = (EditText) this.findViewById(date_spend_editText);
         Car_spend_ET= (EditText) this.findViewById(R.id.Car_spend_editText);
         Add_Spend_bt =(Button) this.findViewById(R.id.Add_Spend_Btn);
+        Price_spend_ET = (EditText) this.findViewById(R.id.price_spend_editText);
+        Price_per_liter_ET = (EditText) this.findViewById(R.id.price_liter_spend_editText);
+        Date_spend_ET = (EditText) this.findViewById(R.id.date_spend_editText);
+        MileAge_spend_ET =  (EditText) this.findViewById(R.id.mileage_spend_editText);
+        Station_spend_ET = (EditText) this.findViewById(R.id.station_spend_editText);
+        City_spend_ET = (EditText) this.findViewById(R.id.city_spend_editText);
     }
 
     private void setListener(){
@@ -64,12 +78,13 @@ public static final String DATE_TAG = "spendFragId";
             @Override
             public void onClick(View view) {
                 Log.i(Acceuil.APP_TAG, "car spend button clicked!");
+               // testInsertDb();
 
-                if (checkValid()){
+              /*  if (checkValid()){
                     submitForm();
                 }else{
-                    Toast.makeText(Spending.this, "Erreur dans le formulaire", Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(SpendingFuel.this, "Erreur dans le formulaire", Toast.LENGTH_LONG).show();
+                }*/
 
             }
         });
@@ -80,12 +95,42 @@ public static final String DATE_TAG = "spendFragId";
         boolean ret = true;
 
         if (!Validation.hasText(Car_spend_ET)) ret = false;
-
+        if(!Validation.hasText(Price_spend_ET)) ret = false;
+        if(!Validation.hasText(Date_spend_ET)) ret = false;
+      //  if (!Validation.hasText(Car_spend_ET)) ret = false;
         return ret;
 
     }
     private void submitForm(){
         Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
+        //public Fuel(long id,long carId,String price,String date,String mileage,Float price_per_liter,String fuel_station,String city,String picture_path,String note)
+        String date =Date_spend_ET.getText().toString();
+        int mileage = Integer.parseInt(MileAge_spend_ET.getText().toString());
+        String fuel_station =Station_spend_ET.getText().toString();
+        String city =City_spend_ET.getText().toString();
+        String picture_path ="Todo";
+        String note =  Note_spend_ET.getText().toString();
+        float priceTotal = Float.parseFloat(Price_spend_ET.getText().toString());;
+        float price_per_liter =Float.parseFloat(Price_per_liter_ET.getText().toString());
+
+
+        new DbManager(this).insertFuel( new Fuel(-1,1,priceTotal,date,mileage,price_per_liter,fuel_station,city,picture_path,note));
+
+
+
+    }
+    private void testInsertDb(){
+        Toast.makeText(this, "test insertion...", Toast.LENGTH_LONG).show();
+        //public Fuel(long id,long carId,String price,String date,String mileage,Float price_per_liter,String fuel_station,String city,String picture_path,String note)
+        float priceTotal = 45.23f;
+        float price_per_liter =1.08f;
+        String date ="01/09/2015";
+        int mileage =154265;
+        String fuel_station ="Esso";
+        String city ="cergy";
+        String picture_path ="Todo";
+        String note ="In progress...";
+        new DbManager(this).insertFuel( new Fuel(-1,1,priceTotal,date,mileage,price_per_liter,fuel_station,city,picture_path,note));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

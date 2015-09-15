@@ -14,9 +14,16 @@ public class Fuel {
     public static final String NOTE_PATH= "note";
 
     private final long id,m_carId ;
-    private final String m_price,m_date,m_mileage,m_price_per_liter,m_fuel_station,m_fuel,m_city,m_picture_path,m_note;
+    private final float m_price;
+    private final String m_date;
+    private final int m_mileage;
+    private final float m_price_per_liter;
+    private final String m_fuel_station;
+    private final String m_city;
+    private final String m_picture_path;
+    private final String m_note;
 
-    public Fuel(long id,long carId,String price,String date,String mileage,String price_per_liter,String fuel_station,String fuel,String city,String picture_path,String note){
+    public Fuel(long id,long carId,float price,String date,int mileage,float price_per_liter,String fuel_station,String city,String picture_path,String note){
         super();
         this.id  = id;
         m_carId =carId;
@@ -25,7 +32,7 @@ public class Fuel {
         m_mileage = mileage;
         m_price_per_liter =price_per_liter;
         m_fuel_station =fuel_station;
-        m_fuel = fuel;
+        //m_fuel = fuel;
         m_city= city;
         m_picture_path= picture_path;
         m_note = note;
@@ -39,7 +46,7 @@ public class Fuel {
         return m_carId;
     }
 
-    public String getM_price() {
+    public float getM_price() {
         return m_price;
     }
 
@@ -47,11 +54,11 @@ public class Fuel {
         return m_date;
     }
 
-    public String getM_mileage() {
+    public int getM_mileage() {
         return m_mileage;
     }
 
-    public String getM_price_per_liter() {
+    public float getM_price_per_liter() {
         return m_price_per_liter;
     }
 
@@ -59,9 +66,6 @@ public class Fuel {
         return m_fuel_station;
     }
 
-    public String getM_fuel() {
-        return m_fuel;
-    }
 
     public String getM_city() {
         return m_city;
