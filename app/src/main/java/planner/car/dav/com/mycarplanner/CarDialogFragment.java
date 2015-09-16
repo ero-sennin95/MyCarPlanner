@@ -9,6 +9,8 @@ import android.support.v4.app.DialogFragment;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Bascule on 09/09/2015.
@@ -17,7 +19,8 @@ public class CarDialogFragment extends DialogFragment {
     //methode que la classe doit implementer
 
     public interface CarDialogListener{
-            public void onChoiceSet(String i);
+            public void onChoiceSet(long id,String i);
+            //public void onChoiceSet(CarMapping carMap);
         }
 
     // Use this instance of the interface to deliver action events
@@ -41,16 +44,24 @@ public class CarDialogFragment extends DialogFragment {
     }
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
-       // String[] listitems = { "item01", "item02", "item03", "item04" };
-        final String[] listitems = new DbManager(this.getActivity().getBaseContext()).listCarName();
+      //  String[] listitems = null;//{ "item01", "item02", "item03", "item04" };
+        //final String[] listitems = new DbManager(this.getActivity().getBaseContext()).listCarName();
+        //On request la DB pour un vehicule contenant le nom + id
+        final List<Vehicule> listNameId = new DbManager(this.getActivity().getBaseContext()).listCarNameId();
+        int taille = listNameId.size();
+        //Creation d'un String[] ds lequel on met les nom des vehicules
+        final String[] cs = new String[taille];
+        //Idem id
+        final long[] id = new long[taille];
+        for (int i= 0;i<listNameId.size();i++){
+            cs[i] = listNameId.get(i).getName();
+            id[i]= listNameId.get(i).getId();
+        }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-
-        builder.setTitle("Choose car").setItems(listitems,new DialogInterface.OnClickListener(){
+        builder.setTitle("Choose car").setItems(cs,new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
-                Log.i(Acceuil.APP_TAG, "onCreateDialog onClick listItems[whitch] : " + listitems[which]);
-                mListener.onChoiceSet(listitems[which]);
+                mListener.onChoiceSet(id[which],cs[which]);
                 // The 'which' argument contains the index position
                 // of the selected item
             }

@@ -1,6 +1,7 @@
 package planner.car.dav.com.mycarplanner;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -32,14 +33,16 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
     EditText City_spend_ET = null;
     EditText Note_spend_ET = null;
     Button Add_Spend_bt = null;
-
+    long id;
+    Context ctx = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addspending_layout);
         initFindViewById();
         setListener();
-        new DbManager(this).listCarNameId();
+        id=-1;
+
     }
 
     private void initFindViewById(){
@@ -52,6 +55,7 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         MileAge_spend_ET =  (EditText) this.findViewById(R.id.mileage_spend_editText);
         Station_spend_ET = (EditText) this.findViewById(R.id.station_spend_editText);
         City_spend_ET = (EditText) this.findViewById(R.id.city_spend_editText);
+        Note_spend_ET = (EditText) this.findViewById(R.id.note_spend_editText);
     }
 
     private void setListener(){
@@ -60,7 +64,7 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
             public void onClick(View view) {
                 Log.i(Acceuil.APP_TAG, "Spend ET clicked!");
                 newFrag = new DatePickerFragment();
-                newFrag.show(getSupportFragmentManager(),DATE_TAG);
+                newFrag.show(getSupportFragmentManager(), DATE_TAG);
 
             }
         });
@@ -78,13 +82,15 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 Log.i(Acceuil.APP_TAG, "car spend button clicked!");
-               // testInsertDb();
-
-              /*  if (checkValid()){
+             //   testInsertDb();
+                if (checkValid()){
                     submitForm();
+                    SpendingFuel.this.finish();
+
+
                 }else{
                     Toast.makeText(SpendingFuel.this, "Erreur dans le formulaire", Toast.LENGTH_LONG).show();
-                }*/
+                }
 
             }
         });
@@ -92,12 +98,12 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
     }
 
     private boolean checkValid() {
+        Log.i(Acceuil.APP_TAG, "check valid!");
         boolean ret = true;
-
         if (!Validation.hasText(Car_spend_ET)) ret = false;
         if(!Validation.hasText(Price_spend_ET)) ret = false;
         if(!Validation.hasText(Date_spend_ET)) ret = false;
-      //  if (!Validation.hasText(Car_spend_ET)) ret = false;
+        if (id<0) ret = false;
         return ret;
 
     }
@@ -105,16 +111,21 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
         //public Fuel(long id,long carId,String price,String date,String mileage,Float price_per_liter,String fuel_station,String city,String picture_path,String note)
         String date =Date_spend_ET.getText().toString();
-        int mileage = Integer.parseInt(MileAge_spend_ET.getText().toString());
+        int mileage=-1;
+        float priceTotal=-1;
+        float price_per_liter=-1;
+        if (Validation.hasText(MileAge_spend_ET)) mileage = Integer.parseInt(MileAge_spend_ET.getText().toString());
+        if (Validation.hasText(Price_spend_ET)) priceTotal = Float.parseFloat(Price_spend_ET.getText().toString());
+        if (Validation.hasText(Price_per_liter_ET)) price_per_liter = Float.parseFloat(Price_per_liter_ET.getText().toString());
+
         String fuel_station =Station_spend_ET.getText().toString();
         String city =City_spend_ET.getText().toString();
         String picture_path ="Todo";
         String note =  Note_spend_ET.getText().toString();
-        float priceTotal = Float.parseFloat(Price_spend_ET.getText().toString());;
-        float price_per_liter =Float.parseFloat(Price_per_liter_ET.getText().toString());
 
 
-        new DbManager(this).insertFuel( new Fuel(-1,1,priceTotal,date,mileage,price_per_liter,fuel_station,city,picture_path,note));
+
+        new DbManager(this).insertFuel(new Fuel(-1, id, priceTotal, date, mileage, price_per_liter, fuel_station, city,picture_path,note));
 
 
 
@@ -130,7 +141,7 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         String city ="cergy";
         String picture_path ="Todo";
         String note ="In progress...";
-        new DbManager(this).insertFuel( new Fuel(-1,1,priceTotal,date,mileage,price_per_liter,fuel_station,city,picture_path,note));
+        new DbManager(this).insertFuel( new Fuel(-1,id,priceTotal,date,mileage,price_per_liter,fuel_station,city,picture_path,note));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -174,8 +185,10 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
     }
 
     @Override
-    public void onChoiceSet(String i) {
+    public void onChoiceSet(long id,String i) {
         Log.i(Acceuil.APP_TAG,"onChoiceSet : " + i);
+        Log.i(Acceuil.APP_TAG,"onChoiceSet id : " + id);
         Car_spend_ET.setText(i);
+        this.id=id;
     }
 }

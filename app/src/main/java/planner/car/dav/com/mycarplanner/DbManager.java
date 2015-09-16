@@ -1,7 +1,6 @@
 package planner.car.dav.com.mycarplanner;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -26,7 +25,7 @@ public class DbManager extends SQLiteOpenHelper{
 
     public DbManager(Context context) {
         super(context, DBNAME, null, DBVERSION);
-        Log.i(Acceuil.APP_TAG,"dbManager() : constructeur normal");
+        Log.i(Acceuil.APP_TAG, "dbManager() : constructeur normal");
 
     }
 
@@ -169,7 +168,7 @@ public class DbManager extends SQLiteOpenHelper{
 
 
     public List<Vehicule> listCar(){
-        Log.i(Acceuil.APP_TAG, "listCar() " );
+        Log.i(Acceuil.APP_TAG, "listCar() ");
 
         ArrayList<Vehicule> carsResult = new ArrayList<Vehicule>();
         final SQLiteDatabase dbb = this.getReadableDatabase();
@@ -179,9 +178,9 @@ public class DbManager extends SQLiteOpenHelper{
             Log.i(Acceuil.APP_TAG, "requete : " + requete);
             Cursor cursor = getReadableDatabase().rawQuery(requete, new String[0]);
             //Log.i(Acceuil.APP_TAG, "cursor : " + cursor.toString());
-
+            if(null != cursor && cursor.getCount()>0){
             cursor.moveToFirst();
-            while(!cursor.isAfterLast()){
+            while(!cursor.isAfterLast()) {
                 final int id = cursor.getInt(0);
                 final String name = cursor.getString(1);
                 final String registration = cursor.getString(2);
@@ -191,15 +190,15 @@ public class DbManager extends SQLiteOpenHelper{
                 final String fuel = cursor.getString(6);
                 final String mileAge = cursor.getString(7);
                 final String average_mileAge = cursor.getString(8);
-                final String control_tech  = cursor.getString(9);
-                final String picture_path  = cursor.getString(10);
+                final String control_tech = cursor.getString(9);
+                final String picture_path = cursor.getString(10);
 
                 Vehicule car = new Vehicule(id, name, registration, first_registration, control_tech, brand, model, fuel, mileAge, average_mileAge, picture_path);
-                Log.i(Acceuil.APP_TAG, "Car : " + car.toString() );
+                Log.i(Acceuil.APP_TAG, "Car : " + car.toString());
 
                 carsResult.add(car);
                 cursor.moveToNext();
-
+            }
             }
             cursor.close();
             dbb.setTransactionSuccessful();
@@ -210,33 +209,27 @@ public class DbManager extends SQLiteOpenHelper{
 
         return carsResult;
     }
-
-    public String[] listCarName() {
-        Log.i(Acceuil.APP_TAG, "listCarName() ");
-        //ArrayList<String> stringResult = new ArrayList<String>();
-
-
+    public List<Vehicule> listCarNameId() {
+        Log.i(Acceuil.APP_TAG, "listCarNameId() ");
+        ArrayList<Vehicule> stringResult = new ArrayList<Vehicule>();
         final SQLiteDatabase dbb = this.getReadableDatabase();
         dbb.beginTransaction();
-        String[] listCar;
         try {
 
-            final String requete = "SELECT " + Vehicule.NAME_KEY + " FROM " + TABLE_CAR;
+            final String requete = "SELECT " + Vehicule.NAME_KEY + "," + Vehicule.ID_KEY + " FROM " + TABLE_CAR;
             Cursor cursor = getReadableDatabase().rawQuery(requete, new String[0]);
             int resultsize = cursor.getCount();
-            listCar = new String[resultsize];
-            int i = 0;
-            //CharSequence[] result = new  CharSequence[resultsize];
+
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
+                final int id = cursor.getInt(1);
                 final String carname = cursor.getString(0);
-                Log.i(Acceuil.APP_TAG, "carname : " + carname +" i : " + i);
-               // stringResult.add(carname);
-                listCar[i] = carname;
-                i++;
+               // Log.i(Acceuil.APP_TAG, "carname : " + carname +" i : " + i);
+                final String name = cursor.getString(1);
+                Vehicule car = new Vehicule(id,carname);
+                stringResult.add(car);
                 cursor.moveToNext();
             }
-
             cursor.close();
             dbb.setTransactionSuccessful();
 
@@ -244,50 +237,7 @@ public class DbManager extends SQLiteOpenHelper{
             dbb.endTransaction();
         }
 
-        return listCar;
-        //cursor.moveToFirst();
-
-
-    }
-    public Hashtable listCarNameId() {
-        Log.i(Acceuil.APP_TAG, "listCarName() ");
-        //ArrayList<String> stringResult = new ArrayList<String>();
-        Hashtable ht = new Hashtable();
-
-
-        final SQLiteDatabase dbb = this.getReadableDatabase();
-        dbb.beginTransaction();
-       // String[] listCar;
-        try {
-
-            final String requete = "SELECT " + Vehicule.NAME_KEY + "," + Vehicule.ID_KEY+ " FROM " + TABLE_CAR;
-            Cursor cursor = getReadableDatabase().rawQuery(requete, new String[0]);
-            int resultsize = cursor.getCount();
-           // listCar = new String[resultsize];
-            int i = 0;
-            //CharSequence[] result = new  CharSequence[resultsize];
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                final String cc = cursor.getString(0);
-                final long id = cursor.getLong(1);
-                Log.i(Acceuil.APP_TAG, "carname : " + cc );
-                Log.i(Acceuil.APP_TAG, "id : " + id );
-//dd
-              // stringResult.add(carname);
-               // listCar[i] = carname;
-              //  i++;
-                cursor.moveToNext();
-            }
-
-            cursor.close();
-            dbb.setTransactionSuccessful();
-
-        } finally {
-            dbb.endTransaction();
-        }
-
-        return null;
-        //cursor.moveToFirst();
+        return stringResult;
 
 
     }

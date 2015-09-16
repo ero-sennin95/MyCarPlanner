@@ -1,5 +1,7 @@
 package planner.car.dav.com.mycarplanner;
 
+import android.util.Log;
+
 public class Vehicule {
     public static final String ID_KEY = "_id";
     public static final String NAME_KEY = "name";
@@ -19,6 +21,7 @@ public class Vehicule {
 
     public Vehicule(long id,String name,String registration,String first_registration,String control_tech,String brand,String model,String fuel,String mileAge,String average_mileAge,String picture_path ){
         super();
+        Log.i(Acceuil.APP_TAG, "Constructeur normal");
         this.id=id;
         this.name=name;
         this.registration=registration;
@@ -33,6 +36,23 @@ public class Vehicule {
 
     }
 
+    public Vehicule(long id,String name ){
+
+        super();
+        Log.i(Acceuil.APP_TAG, "Constructeur surchargé");
+        this.id=id;
+        this.name=name;
+        this.registration=null;
+        this.first_registration=null;
+        this.control_tech=null;
+        this.brand=null;
+        this.model=null;
+        this.fuel=null;
+        this.mileage=null;
+        this.picture_path=null;
+        this.average_mileage=null;
+
+    }
 
     @Override
     public String toString() {
