@@ -58,6 +58,7 @@ public class CarDialogFragment extends DialogFragment {
             id[i]= listNameId.get(i).getId();
         }
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Choose car").setItems(cs,new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {

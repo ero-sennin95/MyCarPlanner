@@ -2,6 +2,11 @@ package planner.car.dav.com.mycarplanner;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -12,16 +17,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import static planner.car.dav.com.mycarplanner.R.id.date_spend_editText;
 
 public class SpendingFuel extends FragmentActivity implements DatePickerDialog.OnDateSetListener,CarDialogFragment.CarDialogListener {
     public static final String DATE_TAG = "spendFragId";
+    public static final int INVOICE_PHOTO_TAKEN = 1;
     EditText spendDateET =null;
     DialogFragment newFrag= null;
     EditText Car_spend_ET = null;
@@ -33,8 +43,15 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
     EditText City_spend_ET = null;
     EditText Note_spend_ET = null;
     Button Add_Spend_bt = null;
+    ImageButton Add_Invoice_Picture_bt = null;
+    private File imageFile = null;
     long id;
     Context ctx = null;
+
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private Uri fileUri;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +59,6 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         initFindViewById();
         setListener();
         id=-1;
-
     }
 
     private void initFindViewById(){
@@ -56,6 +72,7 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         Station_spend_ET = (EditText) this.findViewById(R.id.station_spend_editText);
         City_spend_ET = (EditText) this.findViewById(R.id.city_spend_editText);
         Note_spend_ET = (EditText) this.findViewById(R.id.note_spend_editText);
+        Add_Invoice_Picture_bt = (ImageButton) this.findViewById(R.id.addPicture_invoice_imageButton);
     }
 
     private void setListener(){
@@ -95,8 +112,38 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
             }
         });
 
+        Add_Invoice_Picture_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(Acceuil.APP_TAG, "Add Picture Invoice");
+                Intent invoicePicIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                imageFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+                invoicePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, getOutputMediaFileUri(MEDIA_TYPE_IMAGE));
+                startActivityForResult(invoicePicIntent, INVOICE_PHOTO_TAKEN);
+            }
+        });
+
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.i(Acceuil.APP_TAG, "carName : onActivityResult");
+        switch(requestCode){
+            case INVOICE_PHOTO_TAKEN:{
+                if(resultCode == RESULT_OK){
+                    Log.i(Acceuil.APP_TAG, "Spending : onActivityResult RESULT_OK");
+                //    Bundle b = data.getExtras();
+                   Toast.makeText(this, "Image saved to:\n" +imageFile.getPath(), Toast.LENGTH_LONG).show();
+
+                    // Bundle extraFromPic = data.getExtras();
+                  /*  this.thePhotoTaken = (Bitmap) extraFromPic.get("data");
+                    addPicture_btn.setImageBitmap(thePhotoTaken);
+                    infoCarPicture_btn.setText("Picture successfull taken");*/
+                }
+            }
+        }
+    }
     private boolean checkValid() {
         Log.i(Acceuil.APP_TAG, "check valid!");
         boolean ret = true;
@@ -109,6 +156,7 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
     }
     private void submitForm(){
         Toast.makeText(this, "Submitting form...", Toast.LENGTH_LONG).show();
+        String picture_path = null;
         //public Fuel(long id,long carId,String price,String date,String mileage,Float price_per_liter,String fuel_station,String city,String picture_path,String note)
         String date =Date_spend_ET.getText().toString();
         int mileage=-1;
@@ -120,14 +168,17 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
 
         String fuel_station =Station_spend_ET.getText().toString();
         String city =City_spend_ET.getText().toString();
-        String picture_path ="Todo";
+        if(imageFile != null){
+            picture_path =imageFile.getPath();
+
+        }
         String note =  Note_spend_ET.getText().toString();
 
 
 
         new DbManager(this).insertFuel(new Fuel(-1, id, priceTotal, date, mileage, price_per_liter, fuel_station, city,picture_path,note));
 
-
+        Toast.makeText(this, "Submit successfull...", Toast.LENGTH_LONG).show();
 
     }
     private void testInsertDb(){
@@ -191,4 +242,48 @@ public class SpendingFuel extends FragmentActivity implements DatePickerDialog.O
         Car_spend_ET.setText(i);
         this.id=id;
     }
+
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
+
+    /** Create a file Uri for saving an image or video */
+    private  Uri getOutputMediaFileUri(int type){
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+
+    /** Create a File for saving an image or video */
+    private static File getOutputMediaFile(int type){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyCameraCarPlanner");
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "IMG_"+ timeStamp + ".jpg");
+        } else if(type == MEDIA_TYPE_VIDEO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "VID_"+ timeStamp + ".mp4");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+
+
 }

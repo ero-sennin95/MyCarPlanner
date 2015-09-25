@@ -40,8 +40,8 @@ public class Car extends Activity {
             public void onItemClick(AdapterView<?> parent, View arg1, int arg2,
                                     long arg3) {
                 Log.i(Acceuil.APP_TAG,"Car onCreate() : onItemClick");
-               // Intent carIntent = new Intent(Car.this,CarStat.class);
-                //startActivity(carIntent);
+                Intent carIntent = new Intent(Car.this,CarStat.class);
+                startActivity(carIntent);
             }
 
         } );

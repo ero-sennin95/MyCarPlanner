@@ -225,6 +225,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_acceuil">Acceuil</string>
     <string name="title_activity_car">Car</string>
+    <string name="title_activity_car_stat">CarStat</string>
     <string name="title_activity_spending">Spending</string>
     <!-- From: file:/C:/Users/Bascule/AsProject/MyCarPlanner3/app/src/main/res/values/styles.xml -->
     <eat-comment/>
